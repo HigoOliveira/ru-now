@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
-export default class Select extends Component {
-    constructor(props, id, options) {
-        super(props);
+export default class Menu extends Component {
 
-        console.log(props);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {value: 1};
+  }
 
-    render() {
-        return (
-            <h1 id={this.props.id}>Menu</h1>
-        );
-    }
-}
+  handleChange = (event, index, value) => this.setState({value});
 
-export default ({}) => {
-    menuOptions = [
-        {id: 'ru', value: 'Restaurante Universitário'},
-    ];
-
+  render() {
     return (
-        <Select id="teste" options={menuOptions}/>
-    )
+      <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+        <MenuItem value={1} primaryText="Restaurante Universitário"/>
+        <MenuItem value={2} primaryText="Restaurante Multiuso"/>
+        <MenuItem value={3} primaryText="Login/Cadastrar"/>
+        <MenuItem value={4} primaryText="Sobre o App"/>
+      </DropDownMenu>
+    );
+  }
 }

@@ -1,7 +1,7 @@
-react-hot-boilerplate
+RUNow
 =====================
 
-The minimal dev environment to enable live-editing React components.
+An awesome app for hungry university people.
 
 ### Usage
 

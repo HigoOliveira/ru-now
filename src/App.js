@@ -1,28 +1,17 @@
-import React, { Component } from 'react';
-import Line from './Line';
-import Menu from './Menu';
-import Meal from './Meal';
-import MealList from './MealList';
-import Meat from './Meat';
-import Stars from './Stars';
-import Tabs from './Tabs';
-import CommentBox from './CommentBox';
+import React from 'react'
+import LineContainer from './containers/LineContainer'
+import Menu from './components/Menu'
+import Meal from './components/Meal'
+import MealList from './components/MealList'
+import Meat from './components/Meat'
+import Stars from './components/Stars'
+import Tabs from './components/Tabs'
+import CommentBox from './components/CommentBox'
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      line: {
-        lineSize: 0,
-        lastUpdate: 0
-      }
-    }
-  }
-  render() {
-    const { line } = this.state;
+const App = ({}) =>  {
     return (
       <div>
-        <Line {...line} handleLineUpdate={this.handleLineUpdate} />
+        <LineContainer />
         <Menu />
         <Meal />
         <MealList />
@@ -31,15 +20,7 @@ export default class App extends Component {
         <Tabs />
         <CommentBox />
       </div>
-    );
-  }
-
-  handleLineUpdate = (e) => {
-    this.setState({
-      line: {
-        lineSize: e.target.value
-      }
-    })
-  }
-
+    )
 }
+
+export default App

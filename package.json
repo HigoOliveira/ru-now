@@ -1,14 +1,15 @@
 {
-  "name": "react-hot-boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "name": "ru-now",
+  "version": "0.0.1",
+  "description": "An awesome app for hungry university people",
   "scripts": {
     "start": "node server.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "lint": "eslint src"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/ufv-js/ru-now.git"
   },
   "keywords": [
     "react",
@@ -21,12 +22,12 @@
     "edit",
     "webpack"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "UFV-JS <luandro@gmail.com> (http://github.com/ufv-js)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+    "url": "https://github.com/ufv-js/ru-now/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://github.com/ufv-js/ru-now",
   "devDependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",
@@ -36,12 +37,16 @@
     "babel-preset-stage-0": "^6.0.15",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.6.2",
-    "react-hot-loader": "^3.0.0-alpha.9",
+    "offline-plugin": "^2.2.0",
+    "react-hot-loader": "^3.0.0-alpha.12",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "material-ui": "^0.15.0-beta.2",
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "react-lite": "^0.15.9",
+    "react-tap-event-plugin": "^1.0.0"
   }
 }

@@ -12,19 +12,22 @@ export default class LineContainer extends Component {
     }
   }
 
+
   render() {
-    const { line } = this.state;
+    const { line } = this.state
+    const { time } = this.props
     return (
       <div>
-        <Line {...line} handleLineUpdate={this.handleLineUpdate} />
+        <Line {...line} handleLineUpdate={this.handleLineUpdate} time={time} />
       </div>
     );
   }
 
-  handleLineUpdate = (e) => {
+  handleLineUpdate = (e, value) => {
     this.setState({
       line: {
-        lineSize: e.target.value
+        lineSize: value,
+        lastUpdate: Date.now()
       }
     })
   }

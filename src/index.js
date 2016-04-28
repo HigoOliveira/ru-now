@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 require('offline-plugin/runtime').install();
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 const rootEl = document.getElementById('root');
 ReactDOM.render(

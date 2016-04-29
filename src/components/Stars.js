@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import StarRating from 'react-star-rating-component';
 
-export default ({}) => {
-  return (
-    <div>
-        <IconButton><StarBorder color="black" /></IconButton>
-        <IconButton><StarBorder color="black" /></IconButton>
-        <IconButton><StarBorder color="black" /></IconButton>
-        <IconButton><StarBorder color="black" /></IconButton>
-        <IconButton><StarBorder color="black" /></IconButton>
-    </div>
-  )
+export default class Stars extends Component {
+  render() {
+    const { handleClick, rating, userVote } = this.props;
+    return (
+      <div>
+        <StarRating
+          name="rate1"
+          starCount={5}
+          value={rating}
+          onStarClick={this.handleClick.bind(this)} />
+      </div>
+    )
+  }
+
+  handleClick = (e) => {
+    console.log(e);
+  }
 }

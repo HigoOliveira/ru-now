@@ -5,14 +5,19 @@ export default class StarsContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			media: '',
-			votoUsuario: ''
+			rating: 4,
+			userVote: ''
 		}
 	}
 
 	render() {
 		return	(
-			<Stars {...this.state}></Stars>
+			<Stars {...this.state} handleClick={this.handleClick}></Stars>
 		)
 	}
+
+	handleClick = (e) => {
+		console.log(e);
+	}
+
 }

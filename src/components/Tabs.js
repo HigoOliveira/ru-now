@@ -3,7 +3,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import Comment from 'material-ui/svg-icons/communication/comment';
 import Stars from 'material-ui/svg-icons/action/stars';
 import Restaurant from 'material-ui/svg-icons/maps/restaurant';
-
+import StarVoteListContainer from '../containers/StarVoteListContainer'
 
 export default ({}) => {
   return (
@@ -13,6 +13,7 @@ export default ({}) => {
     	<Tab icon={<Restaurant />} >
     	</Tab>
     	<Tab icon={<Stars />} >
+        <StarVoteListContainer />
     	</Tab>
     </Tabs>
   )

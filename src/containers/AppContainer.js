@@ -1,5 +1,5 @@
 import React, { Component, cloneElement } from 'react'
-import AppLayout from '../components/AppLayout'
+import AppLayout from '../layouts/AppLayout'
 
 export default class AppContainer extends Component {
 	constructor(props) {

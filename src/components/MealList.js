@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 export default ({}) => {
   return (
     <div>
-      <h1>MeatList</h1>
+      <ul>
+        <li>Frango assado</li>
+        <li>Arroz a capixinha</li>
+        <li>Salada de beringela</li>
+      </ul>
     </div>
   )
 }

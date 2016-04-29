@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import TimeAgo from 'react-timeago';
 import Slider from 'material-ui/Slider';
 
 export default ({time, lineSize, lastUpdate, handleLineUpdate}) => {
   return (
     <div>
-      <span>Atualizado a {Math.floor((time - lastUpdate / 1000) % 60)} segundos</span>
+      <TimeAgo date={time} />
       <Slider
         value={lineSize}
         min={0}

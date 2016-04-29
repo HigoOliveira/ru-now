@@ -1,10 +1,10 @@
 import React from 'react'
-import Meal from './Meal'
-import MealList from './MealList'
-import Meat from './Meat'
-import Stars from './Stars'
-import Tabs from './Tabs'
-import CommentBox from './CommentBox'
+import Meal from '../components/Meal'
+import MealList from '../components/MealList'
+import Meat from '../components/Meat'
+import Stars from '../components/Stars'
+import Tabs from '../components/Tabs'
+import CommentBox from '../components/CommentBox'
 
 const MealLayout = ({isLogged, userData, time }) =>  {
     return (

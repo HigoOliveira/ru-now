@@ -1,6 +1,6 @@
 import React from 'react'
 import LineContainer from '../containers/LineContainer'
-import Menu from './Menu'
+import Menu from '../components/Menu'
 
 const AppLayout = ({children, time}) =>  {
     return (

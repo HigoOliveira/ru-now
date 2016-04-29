@@ -1,6 +1,6 @@
 import React, { Component, cloneElement } from 'react'
 import { browserHistory } from 'react-router';
-import MealLayout from '../components/MealLayout'
+import MealLayout from '../layouts/MealLayout'
 
 export default class MealContainer extends Component {
 	constructor(props) {

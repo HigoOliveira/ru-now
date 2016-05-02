@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
-export default ({}) => {
+import {List, ListItem} from 'material-ui/List';
+export default ({listMeal}) => {
   return (
     <div>
-      <ul>
-        <li>Frango assado</li>
-        <li>Arroz a capixinha</li>
-        <li>Salada de beringela</li>
-      </ul>
+      <h1>MeatList</h1>
+      <List>
+      {listMeal.map((meal, key) =>
+      {return <ListItem key={key} primaryText={meal.nameMeal} />})}
+      </List>
     </div>
   )
 }

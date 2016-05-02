@@ -5,11 +5,13 @@ import Stars from 'material-ui/svg-icons/action/stars';
 import Restaurant from 'material-ui/svg-icons/maps/restaurant';
 import MeatVoteListContainer from '../containers/MeatVoteListContainer';
 import StarVoteListContainer from '../containers/StarVoteListContainer';
+import CommentBox from './CommentBox'
 
 export default ({}) => {
   return (
     <Tabs>
     	<Tab icon={<Comment />} >
+        <CommentBox />
     	</Tab>
     	<Tab icon={<Restaurant />} >
         <MeatVoteListContainer />

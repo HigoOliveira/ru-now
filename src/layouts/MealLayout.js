@@ -4,7 +4,6 @@ import MealListContainer from '../containers/MealListContainer'
 import Meat from '../components/Meat'
 import Stars from '../components/Stars'
 import Tabs from '../components/Tabs'
-import CommentBox from '../components/CommentBox'
 
 const MealLayout = ({isLogged, userData, time }) =>  {
     return (
@@ -14,7 +13,6 @@ const MealLayout = ({isLogged, userData, time }) =>  {
         <Meat />
         <Stars />
         <Tabs />
-        <CommentBox />
       </div>
     )
 }

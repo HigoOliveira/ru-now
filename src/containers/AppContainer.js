@@ -51,10 +51,17 @@ export default class AppContainer extends Component {
   };
 
 	handleLogin = () => {
-		location.assign('http://localhost:8001/auth/facebook');
+		const { isLogged } = this.state;
+		if(isLogged) {
+			location.assign('http://localhost:8001/auth/facebook');
+		} else {
+			location.assign('http://localhost:8001/logout');
+		}
 	}
 
 	render() {
+		const { isLogged, userData } = this.state;
+		const loginText = isLogged ? "Logout" : "Login"
 		const actions = [
       <FlatButton
         label="Cancel"
@@ -62,7 +69,7 @@ export default class AppContainer extends Component {
         onTouchTap={this.handleClose}
       />,
       <FlatButton
-        label="Login"
+        label={loginText}
         primary={true}
         keyboardFocused={true}
         onTouchTap={this.handleLogin}

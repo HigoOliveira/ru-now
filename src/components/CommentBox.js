@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-window.fbAsyncInit = function() {
+window.fbAsyncInit = () => {
   FB.init({
     appId      : '816127438519308',
     xfbml      : true,
@@ -8,8 +8,8 @@ window.fbAsyncInit = function() {
   });
 };
 
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
+(function(d, s, id) {
+   let js, fjs = d.getElementsByTagName(s)[0];
    if (d.getElementById(id)) {return;}
    js = d.createElement(s); js.id = id;
    js.src = "//connect.facebook.net/en_US/sdk.js";

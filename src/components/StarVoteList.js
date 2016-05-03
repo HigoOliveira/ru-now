@@ -5,7 +5,6 @@ import Subheader from 'material-ui/Subheader';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 
 export default ({userVotes}) => {
-  console.log('USerVotes:', userVotes);
   return (
     <div>
       <List>

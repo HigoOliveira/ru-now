@@ -11,7 +11,6 @@ export default class MealContainer extends Component {
 	}
 
 	componentDidMount() {
-    console.log(this.props);
     //Emulando um Ajax para nossa futura API
     setTimeout(() => {
       this.setState({
@@ -21,13 +20,12 @@ export default class MealContainer extends Component {
   }
 
   componentWillUpdate() {
-    const { location, params } = this.props;
-    const path = location.pathname;
-    if(path === '/ru' || path === '/ru/') {
-      browserHistory.push(`/ru/${this.state.nextMeal}`)
-    } else if (path === '/mu' || path === '/mu/') {
-      browserHistory.push(`/mu/${this.state.nextMeal}`)
-    }
+    // const path = location.pathname;
+    // if(path === '/ru' || path === '/ru/') {
+    //   browserHistory.push(`/ru/${this.state.nextMeal}`)
+    // } else if (path === '/mu' || path === '/mu/') {
+    //   browserHistory.push(`/mu/${this.state.nextMeal}`)
+    // }
   }
 
 

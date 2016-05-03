@@ -26,6 +26,10 @@ export default class Menu extends Component {
   render() {
     const { userData, isLogged } = this.props;
     const loginText = isLogged ? "Logout" : "Facebook Login"
+    let urlPic = '';
+    if( userData.picture )
+      urlPic = userData.picture.data.url;
+      console.log(urlPic);
     return (
       <Toolbar>
         <ToolbarGroup firstChild={true}>
@@ -33,7 +37,7 @@ export default class Menu extends Component {
         </ToolbarGroup>
         <ToolbarGroup>
           <div style={{paddingTop: 10}}>
-          {isLogged ? <Avatar src="http://lorempixel.com/80/80/people" /> : <a href="http://localhost:8001/auth/facebook">login</a>}
+          {isLogged ? <Avatar src={urlPic} /> : <a href="http://localhost:8001/auth/facebook">login</a>}
           </div>
         </ToolbarGroup>
         <ToolbarGroup>

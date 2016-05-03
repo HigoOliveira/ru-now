@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 window.fbAsyncInit = () => {
   FB.init({
-    appId      : '816127438519308',
+    appId      : '521375034735921',
     xfbml      : true,
     version    : 'v2.6'
   });
@@ -18,6 +18,6 @@ window.fbAsyncInit = () => {
 
 export default ({}) => {
   return (
-    <div className="fb-comments" data-href="localhost:3000" data-numposts="50" data-order-by="reverse_time"></div>
+    <div className="fb-comments" data-href="localhost:3000" data-numposts="10" data-order-by="reverse_time"></div>
   )
 }

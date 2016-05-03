@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Line from '../components/Line'
+import TimeAgo from 'react-timeago'
 
 export default class LineContainer extends Component {
   constructor(props) {
@@ -15,11 +16,8 @@ export default class LineContainer extends Component {
 
   render() {
     const { line } = this.state
-    const { time } = this.props
     return (
-      <div>
-        <Line {...line} handleLineUpdate={this.handleLineUpdate} time={time} />
-      </div>
+        <Line {...line} handleLineUpdate={this.handleLineUpdate} />
     );
   }
 

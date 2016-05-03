@@ -26,6 +26,7 @@ export default class MealContainer extends Component {
     // } else if (path === '/mu' || path === '/mu/') {
     //   browserHistory.push(`/mu/${this.state.nextMeal}`)
     // }
+    
   }
 
 

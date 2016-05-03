@@ -3,6 +3,9 @@ import { browserHistory } from 'react-router'
 import Dialog from 'material-ui/Dialog'
 import AppLayout from '../layouts/AppLayout'
 import FlatButton from 'material-ui/FlatButton';
+
+//import FB from 'fb';
+
 import 'whatwg-fetch';
 
 export default class AppContainer extends Component {
@@ -19,25 +22,45 @@ export default class AppContainer extends Component {
 		}
 	}
 
+	componentWillMount() {
+		const token = this.props.location.query.access_token || localStorage.getItem('token');
+
+		if(token) {
+			localStorage.setItem('token', token);
+			const userData = localStorage.getItem('userData');
+
+			if( !userData ) {
+				window.fbAsyncInit = () => {
+				  FB.init({
+				    appId      : '521375034735921',
+				    xfbml      : true,
+				    version    : 'v2.6'
+				  });
+
+				FB.api('/me', 
+						{
+							fields: ['last_name','picture'],
+							access_token : token,
+
+						},function(response) {
+					
+					localStorage.setItem('userData', JSON.stringify(response));
+					browserHistory.push('/ru')
+				});
+				};
+			}
+		}
+	}
+
 	componentDidMount() {
 
-		const token = this.props.location.query.access_token;
-		if(token) {
-			fetch(`https://graph.facebook.com/me?fields=name&access_token=${token}`)
-			.then((id) => {
-				console.log(id);
-				this.setState({
-					isLogged: true,
-					userData: {
-						name: 'Juca do Gas',
-						id
-					}
-				});
-				browserHistory.push('/ru')
-			})
-			.catch((error) => {
-				console.log("ERROR ON FACEBOOK FETCH ID: ", error);
-			})
+		const userData = localStorage.getItem('userData');
+		if( userData )
+		{
+			this.setState({
+				isLogged: true,
+				userData: JSON.parse(userData)
+			});
 		}
 		setInterval(this.tick, 5000);
 	}

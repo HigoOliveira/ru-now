@@ -38,7 +38,8 @@ export default class AppContainer extends Component {
 				const dataFromQuery = {
 					avatar: `${q.avatar}&oe=${q.oe}&__gda__=${q.__gda__}`,
 					profileUrl: q.profileUrl,
-					first_name: q.name
+					first_name: q.name,
+					id: q.id
 				}
 				localStorage.setItem('userData', JSON.stringify(dataFromQuery));
 				const userData = localStorage.getItem('userData');

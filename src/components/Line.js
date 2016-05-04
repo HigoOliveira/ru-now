@@ -8,12 +8,12 @@ import Help from 'material-ui/svg-icons/action/help-outline';
 
 const styles = {
     container: {
-      minWidth: 600,
+      minWidth: '80%',
       display: 'flex',
       justifyContent: 'space-around'
     },
     badge: {
-      paddingLeft: 30
+      paddingLeft: 5
     },
     line: {
       minWidth: '95%'
@@ -42,7 +42,7 @@ export default ({lineSize, handleLineUpdate, lastUpdate}) => {
           step={5}
           max={100}
           onChange={handleLineUpdate.bind(this)}/>
-          <IconButton style={styles.badge} touch={true} tooltipPosition="bottom-right" tooltip={`tamanho da fila está em ${lineSize}%`}>
+          <IconButton style={styles.badge} touch={true} tooltipPosition="bottom-left" tooltip={`tamanho da fila está em ${lineSize}%`}>
             <Help />
           </IconButton>
       </div>

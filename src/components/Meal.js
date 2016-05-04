@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 import MealListContainer from '../containers/MealListContainer';
 import Badge from 'material-ui/Badge';
 import IconButton from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/device/access-alarm';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-
 import ArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import {red500, orange500} from 'material-ui/styles/colors';
 
@@ -13,38 +13,46 @@ const styles = {
     width: '100%',
   },
   header: {
-    backgroundColor: 'red',
-    backgroundImage: 'url("http://lorempixel.com/1200/400/food/")',
+    backgroundColor: red500,
+    backgroundImage: 'url("http://lorempixel.com/480/300/food/")',
+    '@media (min-width: 992px)': {
+       backgroundImage: 'url("http://lorempixel.com/1200/400/food/")',
+     },
     backgroundSize: 'cover',
     width: '100%',
     height: 400,
   },
   container: {
-    display: 'flex',
+    '@media (min-width: 992px)': {
+       display: 'flex',
+     },
   },
   time: {
-    flexGrow: 1
   },
   mediumIcon: {
     width: 48,
     height: 48,
   },
   info: {
-    width: '50%',
+    width: '100%',
+    '@media (min-width: 992px)': {
+       width: '50%'
+     },
     padding: '15px 20px',
-    flexGrow: 3,
     display: 'flex',
     justifyContent: 'space-around'
 
   },
   list: {
-    width: '50%',
+    width: '100%',
+    '@media (min-width: 992px)': {
+       width: '50%'
+     },
     padding: '15px 20px',
-    flexGrow: 2,
   }
 }
 
-export default ({}) => {
+const Meal = ({}) => {
   return (
     <div style={styles.wrapper}>
       <div style={styles.header} />
@@ -86,3 +94,5 @@ export default ({}) => {
     </div>
   )
 }
+
+export default Radium(Meal)

@@ -1,9 +1,10 @@
 import React from 'react'
+import { StyleRoot } from 'radium'
 import { Router, browserHistory } from 'react-router'
 import routes from './routes'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import * as Colors from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import * as Colors from 'material-ui/styles/colors'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -28,9 +29,11 @@ const muiTheme = getMuiTheme({
 
 const App = ({}) =>  {
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <Router history={browserHistory} routes={routes} />
-      </MuiThemeProvider>
+      <StyleRoot>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <Router history={browserHistory} routes={routes} />
+        </MuiThemeProvider>
+      </StyleRoot>
     )
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 import { browserHistory } from 'react-router'
@@ -19,18 +20,24 @@ const styles = {
     width: '100%',
     background: brown200,
     position: 'fixed',
+    zIndex: 99,
     '@media (min-width: 992px)': {
        background: brown500,
-       width: '70%',
+       width: '65%',
        position: 'static'
      },
   },
   dropBar: {
     paddingTop: 54,
     '@media (min-width: 992px)': {
-       width: '30%',
+       width: '35%',
        paddingTop: 0
      },
+  },
+  dropToolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   }
 }
 
@@ -53,7 +60,7 @@ class Menu extends Component {
   render() {
     const { userData, isLogged } = this.props;
     const loginText = isLogged ? "Logout" : "Facebook Login"
-    const userInfo = <div style={{marginLeft: 25}} ><a href={userData.profileUrl}><Avatar src={userData.avatar} /><span>Olá {userData.first_name}</span></a></div>
+    const userInfo = <div><a href={userData.profileUrl}><Avatar src={userData.avatar} /></a></div>
     return (
       <div style={styles.container}>
         <div style={styles.lineBar}>
@@ -62,13 +69,16 @@ class Menu extends Component {
           </Toolbar>
         </div>
         <div style={styles.dropBar}>
-          <Toolbar>
+          <Toolbar style={styles.dropToolbar}>
+            {isLogged ? userInfo : <span></span>}
             <DropDownMenu value={this.state.value} onChange={this.handleChange}>
               <MenuItem value={'/ru'} primaryText="Restaurante Universitário"/>
               <MenuItem value={'/mu'} primaryText="Restaurante Espaço Multiuso"/>
+              <Divider />
               <MenuItem value={'login'} primaryText={loginText}/>
               <MenuItem value={'/about'} primaryText="Sobre o app" />
-              {isLogged ? userInfo : <span></span>}
+              <Divider />
+              <MenuItem value={'/feedback'} primaryText="Dê seu feedback" />
             </DropDownMenu>
           </Toolbar>
         </div>

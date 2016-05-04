@@ -16,15 +16,20 @@ const styles = {
      },
   },
   lineBar: {
+    width: '100%',
     background: brown200,
+    position: 'fixed',
     '@media (min-width: 992px)': {
        background: brown500,
-       width: '70%'
+       width: '70%',
+       position: 'static'
      },
   },
   dropBar: {
+    paddingTop: 54,
     '@media (min-width: 992px)': {
-       width: '30%'
+       width: '30%',
+       paddingTop: 0
      },
   }
 }

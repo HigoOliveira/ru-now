@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 import TimeAgo from 'react-timeago';
 import Slider from 'material-ui/Slider';
 import Badge from 'material-ui/Badge';
@@ -16,11 +17,38 @@ const styles = {
       paddingLeft: 5
     },
     line: {
-      minWidth: '95%'
+      minWidth: '95%',
+      zIndex: 2
+    },
+    lineContainer: {
+      minWidth: '90%',
+      display: 'flex'
+    },
+    voteBar: {
+      borderRadius: 5,
+      border: '1px solid blue',
+      minWidth: '60%',
+      top: 29,
+      height: 8,
+      position: 'absolute',
+      '@media (min-width: 992px)': {
+        minWidth: '45%'
+      }
+    },
+    vote: {
+      borderRadius: 5,
+      minWidth: '40%',
+      top: 29,
+      height: 8,
+      background: 'blue',
+      position: 'absolute',
+      '@media (min-width: 992px)': {
+        minWidth: '25%'
+      }
     }
 }
 
-export default ({lineSize, handleLineUpdate, lastUpdate}) => {
+const Line = ({lineSize, handleLineUpdate, lastUpdate}) => {
   return (
     <div style={styles.container}>
       <div style={styles.badge}>
@@ -34,7 +62,9 @@ export default ({lineSize, handleLineUpdate, lastUpdate}) => {
           </IconButton>
         </Badge>
       </div>
-      <div style={{minWidth: '90%', display: 'flex'}}>
+      <div style={styles.lineContainer}>
+        <div style={styles.voteBar} />
+        <div style={styles.vote} />
         <Slider
           value={lineSize}
           style={styles.line}
@@ -49,3 +79,5 @@ export default ({lineSize, handleLineUpdate, lastUpdate}) => {
     </div>
   )
 }
+
+export default Radium(Line)

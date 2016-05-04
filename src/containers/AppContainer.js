@@ -20,19 +20,18 @@ export default class AppContainer extends Component {
 	}
 
 	componentWillMount() {
-		const q = this.props.location.query
+		const q = this.props.location.query;
 		const token = q.access_token || localStorage.getItem('token');
 		if(token) {
 			localStorage.setItem('token', token);
 			const userData = localStorage.getItem('userData');
 			if( userData ) {
-				browserHistory.push('/ru');
+				browserHistory.push('/ru/1');
 				this.setState({
 					isLogged: true,
 					userData: JSON.parse(userData)
 				});
 			} else if( !userData ) {
-				console.log(q.url_pic);
 				const dataFromQuery = {
 					avatar: `${q.avatar}&oe=${q.oe}&__gda__=${q.__gda__}`,
 					profileUrl: q.profileUrl,
@@ -40,10 +39,11 @@ export default class AppContainer extends Component {
 					id: q.id
 				}
 				localStorage.setItem('userData', JSON.stringify(dataFromQuery));
-				const userData = localStorage.getItem('userData');
+				// const userData = localStorage.getItem('userData');
 				this.setState({
 					isLogged: true,
-					userData: JSON.parse(userData)
+					userData: dataFromQuery
+					// userData: JSON.parse(userData)
 				});
 				browserHistory.push('/ru')
 			}

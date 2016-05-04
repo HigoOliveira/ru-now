@@ -6,6 +6,7 @@ import Badge from 'material-ui/Badge';
 import IconButton from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import Help from 'material-ui/svg-icons/action/help-outline';
+import { red500 } from 'material-ui/styles/colors'
 
 const styles = {
     container: {
@@ -14,10 +15,10 @@ const styles = {
       justifyContent: 'space-around'
     },
     badge: {
-      paddingLeft: 5
+      paddingLeft: 25
     },
     line: {
-      minWidth: '95%',
+      minWidth: '100%',
       zIndex: 2
     },
     lineContainer: {
@@ -26,7 +27,7 @@ const styles = {
     },
     voteBar: {
       borderRadius: 5,
-      border: '1px solid blue',
+      border: '1px solid '+red500,
       minWidth: '60%',
       top: 29,
       height: 8,
@@ -40,7 +41,7 @@ const styles = {
       minWidth: '40%',
       top: 29,
       height: 8,
-      background: 'blue',
+      background: red500,
       position: 'absolute',
       '@media (min-width: 992px)': {
         minWidth: '25%'

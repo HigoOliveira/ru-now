@@ -12,11 +12,13 @@ ReactDOM.render(
   rootEl
 );
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    ReactDOM.render(
-      <AppContainer component={require('./App').default} />,
-      rootEl
-    );
-  });
+if(__DEV__) {
+  if (module.hot) {
+    module.hot.accept('./App', () => {
+      ReactDOM.render(
+        <AppContainer component={require('./App').default} />,
+        rootEl
+      );
+    });
+  }
 }

@@ -15,9 +15,8 @@ export default class Menu extends Component {
 
   handleChange = (event, index, value) => {
     if(value === 'login') {
-      this.props.handleOpen();
+      this.props.handleLogin();
     } else {
-      this.setState({value});
       browserHistory.push(value)
     }
 
@@ -26,19 +25,11 @@ export default class Menu extends Component {
   render() {
     const { userData, isLogged } = this.props;
     const loginText = isLogged ? "Logout" : "Facebook Login"
-    let urlPic = '';
-    if( userData.picture )
-      urlPic = userData.picture.data.url;
-      console.log(urlPic);
+    const userInfo = <div style={{marginLeft: 25}} ><a href={userData.profileUrl}><Avatar src={userData.avatar} /><span>Olá {userData.first_name}</span></a></div>
     return (
       <Toolbar>
         <ToolbarGroup firstChild={true}>
           <LineContainer />
-        </ToolbarGroup>
-        <ToolbarGroup>
-          <div style={{paddingTop: 10}}>
-          {isLogged ? <Avatar src={urlPic} /> : <a href="http://localhost:8001/auth/facebook">login</a>}
-          </div>
         </ToolbarGroup>
         <ToolbarGroup>
           <DropDownMenu value={this.state.value} onChange={this.handleChange}>
@@ -46,6 +37,7 @@ export default class Menu extends Component {
             <MenuItem value={'/mu'} primaryText="Restaurante Espaço Multiuso"/>
             <MenuItem value={'login'} primaryText={loginText}/>
             <MenuItem value={'/about'} primaryText="Sobre o app" />
+            {isLogged ? userInfo : <span></span>}
           </DropDownMenu>
         </ToolbarGroup>
       </Toolbar>

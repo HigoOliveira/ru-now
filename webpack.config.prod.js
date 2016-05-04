@@ -30,6 +30,10 @@ module.exports = {
       AppCache: {
         directory: 'appcache/'
       }
+    }),
+    new webpack.DefinePlugin({
+      __DEV__: JSON.stringify(JSON.parse(process.env.DEV || 'false')),
+      __PRODUCTION__: JSON.stringify(JSON.parse(process.env.PRODUCTION || 'true'))
     })
   ],
   module: {

@@ -23,45 +23,36 @@ export default class AppContainer extends Component {
 	}
 
 	componentWillMount() {
-		const token = this.props.location.query.access_token || localStorage.getItem('token');
-
+		const q = this.props.location.query
+		const token = q.access_token || localStorage.getItem('token');
 		if(token) {
 			localStorage.setItem('token', token);
 			const userData = localStorage.getItem('userData');
-
-			if( !userData ) {
-				window.fbAsyncInit = () => {
-				  FB.init({
-				    appId      : '521375034735921',
-				    xfbml      : true,
-				    version    : 'v2.6'
-				  });
-
-				FB.api('/me', 
-						{
-							fields: ['last_name','picture'],
-							access_token : token,
-
-						},function(response) {
-					
-					localStorage.setItem('userData', JSON.stringify(response));
-					browserHistory.push('/ru')
+			if( userData ) {
+				browserHistory.push('/ru');
+				this.setState({
+					isLogged: true,
+					userData: JSON.parse(userData)
 				});
-				};
+			} else if( !userData ) {
+				const dataFromQuery = {
+					avatar: `${q.avatar}&oe=${q.oe}&__gda__=${q.__gda__}`,
+					profileUrl: q.profileUrl,
+					first_name: q.name
+				}
+				localStorage.setItem('userData', JSON.stringify(dataFromQuery));
+				const userData = localStorage.getItem('userData');
+				this.setState({
+					isLogged: true,
+					userData: JSON.parse(userData)
+				});
+				browserHistory.push('/ru')
 			}
 		}
 	}
 
-	componentDidMount() {
 
-		const userData = localStorage.getItem('userData');
-		if( userData )
-		{
-			this.setState({
-				isLogged: true,
-				userData: JSON.parse(userData)
-			});
-		}
+	componentDidMount() {
 		setInterval(this.tick, 5000);
 	}
 
@@ -75,10 +66,12 @@ export default class AppContainer extends Component {
 
 	handleLogin = () => {
 		const { isLogged } = this.state;
-		if(isLogged) {
+		if(!isLogged) {
 			location.assign('http://localhost:8001/auth/facebook');
 		} else {
-			location.assign('http://localhost:8001/logout');
+			localStorage.removeItem('token');
+			localStorage.removeItem('userData');
+			location.assign('http://localhost:8001/auth/logout');
 		}
 	}
 
@@ -99,7 +92,7 @@ export default class AppContainer extends Component {
       />,
     ];
 		return	(
-			<AppLayout {...this.state} handleClose={this.handleClose} handleOpen={this.handleOpen}>
+			<AppLayout {...this.state} handleClose={this.handleClose} handleOpen={this.handleOpen} handleLogin={this.handleLogin}>
 				{ cloneElement(this.props.children, {...this.state})}
 				<Dialog
           title="Facebook Login"

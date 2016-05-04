@@ -10,6 +10,7 @@ export default class Stars extends Component {
           name="rate1"
           starCount={5}
           value={rating}
+          renderStarIcon={() => <span style={{fontSize: '2em'}}>★</span>}
           onStarClick={this.handleClick.bind(this)} />
       </div>
     )

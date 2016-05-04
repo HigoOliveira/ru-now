@@ -32,6 +32,7 @@ export default class AppContainer extends Component {
 					userData: JSON.parse(userData)
 				});
 			} else if( !userData ) {
+				console.log(q.url_pic);
 				const dataFromQuery = {
 					avatar: `${q.avatar}&oe=${q.oe}&__gda__=${q.__gda__}`,
 					profileUrl: q.profileUrl,

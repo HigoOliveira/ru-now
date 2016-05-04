@@ -16,7 +16,8 @@ export default class AppContainer extends Component {
 			isLogged: false,
 			userData: {
 				name: false,
-				token: false
+				token: false,
+				profileUrl: false,
 			},
 			time: Date.now()
 		}
@@ -36,7 +37,7 @@ export default class AppContainer extends Component {
 				});
 			} else if( !userData ) {
 				const dataFromQuery = {
-					avatar: `${q.avatar}&oe=${q.oe}&__gda__=${q.__gda__}`,
+					avatar: q.url_pic,//`${q.avatar}&oe=${q.oe}&__gda__=${q.__gda__}`,
 					profileUrl: q.profileUrl,
 					first_name: q.name
 				}

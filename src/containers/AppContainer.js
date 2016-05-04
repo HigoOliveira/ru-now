@@ -14,10 +14,7 @@ export default class AppContainer extends Component {
 		this.state = {
 			loginOpen: false,
 			isLogged: false,
-			userData: {
-				name: false,
-				token: false
-			},
+			userData: {},
 			time: Date.now()
 		}
 	}
@@ -70,6 +67,10 @@ export default class AppContainer extends Component {
 		if(!isLogged) {
 			location.assign('http://localhost:8001/auth/facebook');
 		} else {
+			this.setState({
+				isLogged: false,
+				userData: {}
+			})
 			localStorage.removeItem('token');
 			localStorage.removeItem('userData');
 			location.assign('http://localhost:8001/auth/logout');

@@ -38,6 +38,12 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end'
+  },
+  avatar: {
+    display: 'none',
+    '@media (min-width: 375px)': {
+      display: 'block'
+    }
   }
 }
 
@@ -60,7 +66,15 @@ class Menu extends Component {
   render() {
     const { userData, isLogged } = this.props;
     const loginText = isLogged ? "Logout" : "Facebook Login"
-    const userInfo = <div><a href={userData.profileUrl}><Avatar src={userData.avatar} /></a></div>
+    const userInfo = (
+      <div>
+        <a href={userData.profileUrl}>
+          <span style={styles.avatar}>
+            <Avatar src={userData.avatar} />
+          </span>
+        </a>
+      </div>
+    )
     return (
       <div style={styles.container}>
         <div style={styles.lineBar}>

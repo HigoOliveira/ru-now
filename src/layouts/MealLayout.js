@@ -1,11 +1,18 @@
 import React from 'react'
-import Meal from '../components/Meal'
+import Radium from 'radium'
+import MealInfo from '../components/MealInfo'
+import MealList from '../components/MealList'
 import Meat from '../components/Meat'
 import Stars from '../components/Stars'
 import Tabs from '../components/Tabs'
 import { red200 } from 'material-ui/styles/colors'
 
 const styles = {
+  meal: {
+    '@media (min-width: 992px)': {
+      display: 'flex'
+    }
+  },
   actions: {
     display: 'flex',
     justifyContent: 'space-around',
@@ -16,17 +23,20 @@ const styles = {
   }
 }
 
-const MealLayout = ({isLogged, userData, time }) =>  {
+const MealLayout = ({isLogged, userData, time, mealList }) =>  {
     return (
       <div>
-        <Meal />
+        <div style={styles.meal}>
+          <MealInfo />
+          <MealList mealList={mealList} />
+        </div>
         <div style={styles.actions}>
-          <Meat />
-          <Stars />
+          <Meat isLogged={isLogged} />
+          <Stars isLogged={isLogged} />
         </div>
         <Tabs />
       </div>
     )
 }
 
-export default MealLayout
+export default Radium(MealLayout)

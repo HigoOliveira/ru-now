@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
-import MealListContainer from '../containers/MealListContainer';
 import Badge from 'material-ui/Badge';
 import IconButton from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/device/access-alarm';
@@ -15,12 +14,13 @@ const styles = {
   header: {
     backgroundColor: red500,
     backgroundImage: 'url("http://lorempixel.com/480/300/food/")',
-    '@media (min-width: 992px)': {
-       backgroundImage: 'url("http://lorempixel.com/1200/400/food/")',
-     },
     backgroundSize: 'cover',
     width: '100%',
-    height: 400,
+    height: 300,
+    '@media (min-width: 992px)': {
+       backgroundImage: 'url("http://lorempixel.com/1200/400/food/")',
+       height: 500
+     },
   },
   container: {
     '@media (min-width: 992px)': {
@@ -43,12 +43,14 @@ const styles = {
     justifyContent: 'space-around'
 
   },
-  list: {
-    width: '100%',
-    '@media (min-width: 992px)': {
-       width: '50%'
-     },
-    padding: '15px 20px',
+  title: {
+
+  },
+  day: {
+
+  },
+  date: {
+
   }
 }
 
@@ -75,8 +77,9 @@ const Meal = ({}) => {
           </div>
           <div style={styles.info}>
             <div>
-              <h1>Almoço</h1>
-              <h3>Terça-feira, 13/05/2016</h3>
+              <h1 style={styles.title}>Almoço</h1>
+              <h3 style={styles.day}>Terça-feira</h3>
+              <h4 style={styles.date}>13/05/2016</h4>
             </div>
             <FloatingActionButton
               iconStyle={styles.mediumIcon}
@@ -85,10 +88,6 @@ const Meal = ({}) => {
               color={red500}
               hoverColor={orange500} />
             </FloatingActionButton>
-
-          </div>
-          <div style={styles.list}>
-            <MealListContainer />
           </div>
         </div>
     </div>

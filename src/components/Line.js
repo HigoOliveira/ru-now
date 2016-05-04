@@ -15,7 +15,9 @@ const styles = {
       justifyContent: 'space-around'
     },
     badge: {
-      paddingLeft: 25
+      '@media (min-width: 400px)': {
+        paddingLeft: 25
+      },
     },
     line: {
       minWidth: '100%',
@@ -73,9 +75,11 @@ const Line = ({lineSize, handleLineUpdate, lastUpdate}) => {
           step={5}
           max={100}
           onChange={handleLineUpdate.bind(this)}/>
-          <IconButton style={styles.badge} touch={true} tooltipPosition="bottom-left" tooltip={`tamanho da fila está em ${lineSize}%`}>
-            <Help />
-          </IconButton>
+          <div style={styles.badge}>
+            <IconButton touch={true} tooltipPosition="bottom-left" tooltip={`tamanho da fila está em ${lineSize}%`}>
+              <Help />
+            </IconButton>
+          </div>  
       </div>
     </div>
   )

@@ -16,6 +16,17 @@ mongoose.connect(`mongodb://${mongo_env}`);
 const isDev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 8000;
 const app = express();
+
+var bodyParser = require('body-parser') 
+
+// parse application/x-www-form-urlencoded 
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
+
+// parse application/json 
+app.use(bodyParser.json())
+
 app.use(auth(redis));
 // Serve as rotas da API
 const router = require('./router')(app);

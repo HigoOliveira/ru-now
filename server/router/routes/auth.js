@@ -15,7 +15,7 @@ router.get('/facebook/callback',
   (req, res) => {
     const user = req.user
     console.log('Facebook callback req.user', req.user);
-    res.redirect(facebookSuccess_env+"?access_token=" + req.user.access_token + "&url_pic="+encode(req.user.avatar)+"&name="+req.user.facebook.name+"&profileUrl="+encode(req.user.profileUrl));
+    res.redirect(facebookSuccess_env+"?access_token=" + req.user.access_token + "&url_pic="+encode(req.user.avatar)+"&name="+req.user.facebook.name+"&profileUrl="+encode(req.user.profileUrl)+"&id="+req.user.id);
   }
 );
 

@@ -1,6 +1,7 @@
 const express =  require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const MeatVote = mongoose.model('MeatVote', {
   vote: Boolean,
@@ -8,11 +9,13 @@ const MeatVote = mongoose.model('MeatVote', {
   date: Date
 })
 
-router.get('/vote', (req, res) => {
+
+
+router.post('/vote', (req, res) => {
   // receber parametros: vote, userId, date
   // salvar num modelo de Line
-  const q = req.query
-  //console.log(q);
+  const q = req.body
+  console.log(q);
   const vote = new MeatVote({
     vote: q.vote,
     userId: q.userId,
@@ -27,12 +30,11 @@ router.get('/vote', (req, res) => {
       error = true;
     }
   });
-  //res.status(200).json({res: error})
-  res.redirect('http://localhost:3000/ru');
+  res.status(200).json({error: error, res: true})
 })
 
 router.get('/', (req, res) => {
-  const query = MeatVote.find({})
+  const query = MeatVote.find({date : new Date()})
   var myData = [];
   query.exec((err, data) => {
     if(err) {

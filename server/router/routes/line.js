@@ -1,6 +1,12 @@
 const express =  require('express');
 const router = express.Router();
-const LineVote =  require('../../models/LineVote');
+const mongoose = require('mongoose');
+
+const LineVote = mongoose.model('LineVote', {
+  vote: Number,
+  userId: String,
+  date: Date
+})
 
 router.post('/vote', (req, res) => {
   // receber parametros: rating, userId, date

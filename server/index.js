@@ -1,35 +1,28 @@
-/* eslint consistent-return:0 */
-
+// Express
 const express = require('express');
 const logger = require('./logger');
 const config = require('../config');
+// Middlewares personalizados
 const frontend = require('./middlewares/frontendMiddleware');
 const auth = require('./middlewares/authMiddleware');
-// Databases
+// Banco de dados
 const Redis = require('ioredis');
 const redis = new Redis(`redis://${config.redis}`);
 const mongoose = require('mongoose');
 mongoose.connect(`mongodb://${config.mongodb}`);
-
+// Configurações
 const isDev = process.env.NODE_ENV !== 'production';
-
+const port = process.env.PORT || 3000;
 const app = express();
-
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use(auth(config, redis));
+// Serve as rotas da API
 const router = require('./router')(app);
-
-
-// Initialize frontend middleware that will serve your JS app
+// Serve o aplicativo em React
 const webpackConfig = isDev
   ? require('../webpack.config')
   : require('../webpack.config.prod');
-
 app.use(frontend(webpackConfig));
-
-const port = process.env.PORT || 3000;
-
-// Start your app.
+// Mensagem caso em produção
 app.listen(port, (err) => {
   if (err) {
     return logger.error(err);

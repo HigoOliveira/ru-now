@@ -6,7 +6,7 @@
     "start": "cross-env NODE_ENV=development node server",
     "api": "cross-env NODE_ENV=development nodemon ./server --exec babel-node --presets es2015,stage-0",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "postinstall": "npm run build && npm run prod",
+    "postinstall": "npm run build",
     "prod": "cross-env NODE_ENV=production node server",
     "web": "node server",
     "lint": "eslint src"

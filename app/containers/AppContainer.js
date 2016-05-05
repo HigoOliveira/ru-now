@@ -4,9 +4,6 @@ import { browserHistory } from 'react-router'
 import Dialog from 'material-ui/Dialog'
 import AppLayout from '../layouts/AppLayout'
 import FlatButton from 'material-ui/FlatButton';
-let appUrl;
-// GET URL INSTEAD OF THIS
-(__DEV__) ? appUrl='http://localhost:3000' : appUrl='https://runow.herokuapp.com'
 
 export default class AppContainer extends Component {
 	constructor(props) {
@@ -65,6 +62,7 @@ export default class AppContainer extends Component {
   };
 
 	handleLogin = () => {
+		const appUrl = window.location.host;
 		const { isLogged } = this.state;
 		if(!isLogged) {
 			location.assign(`${appUrl}/api/auth/facebook`);
@@ -99,14 +97,14 @@ export default class AppContainer extends Component {
 			<AppLayout {...this.state} handleClose={this.handleClose} handleOpen={this.handleOpen} handleLogin={this.handleLogin}>
 				{ cloneElement(this.props.children, {...this.state})}
 				<Dialog
-          title="Facebook Login"
-          actions={actions}
-          modal={false}
-          open={this.state.loginOpen}
-          onRequestClose={this.handleClose}
-        >
-          É necessário fazer o login com o Facebook.
-        </Dialog>
+		          title="Facebook Login"
+		          actions={actions}
+		          modal={false}
+		          open={this.state.loginOpen}
+		          onRequestClose={this.handleClose}
+		        >
+          			É necessário fazer o login com o Facebook.
+        		</Dialog>
 			</AppLayout>
 		)
 	}

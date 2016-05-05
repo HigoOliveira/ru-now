@@ -9,6 +9,7 @@
     "postinstall": "npm run build",
     "prod": "cross-env NODE_ENV=production node server",
     "web": "node server",
+    "s3": "npm run build && s3-cli put -P ./public/dist/bundle.js s3://runow/bundle.js",
     "lint": "eslint src"
   },
   "repository": {

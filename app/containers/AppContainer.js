@@ -62,10 +62,9 @@ export default class AppContainer extends Component {
   };
 
 	handleLogin = () => {
-		const appUrl = window.location.host;
 		const { isLogged } = this.state;
 		if(!isLogged) {
-			location.assign(`${appUrl}/api/auth/facebook`);
+			location.assign('/api/auth/facebook');
 		} else {
 			this.setState({
 				isLogged: false,
@@ -73,7 +72,7 @@ export default class AppContainer extends Component {
 			})
 			localStorage.removeItem('token');
 			localStorage.removeItem('userData');
-			location.assign(`${appUrl}/api/auth/logout`);
+			location.assign('/api/auth/logout');
 		}
 	}
 

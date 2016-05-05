@@ -2,7 +2,6 @@ const express = require('express');
 const passport = require('passport');
 const config = require('../../../config.js');
 const router = express.Router();
-const User = require('../../models/User');
 const encode = require('urlencode');
 
 // Facebook authentication

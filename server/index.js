@@ -2,14 +2,27 @@
 
 const express = require('express');
 const logger = require('./logger');
-
+const config = require('../config');
 const frontend = require('./middlewares/frontendMiddleware');
+const auth = require('./middlewares/authMiddleware');
+// Databases
+const Redis = require('ioredis');
+const redis = new Redis(`redis://${config.redis}`);
+const mongoose = require('mongoose');
+mongoose.connect(`mongodb://${config.mongodb}`);
+
 const isDev = process.env.NODE_ENV !== 'production';
 
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+app.get('/api', (req, res) => {
+  console.log(req);
+  res.send('FUck the api')
+});
+app.use(auth(config, redis));
+const router = require('./router')(app);
+
 
 // Initialize frontend middleware that will serve your JS app
 const webpackConfig = isDev

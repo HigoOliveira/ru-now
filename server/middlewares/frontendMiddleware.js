@@ -23,8 +23,6 @@ let template = (
 
             <link rel="apple-touch-icon" href="apple-touch-icon.png">
             <!-- Place favicon.ico in the root directory -->
-            <link rel="stylesheet" type="text/css" href="/assets/sanitize.css">
-            <link rel="stylesheet" type="text/css" href="/assets/styles.css">
             <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
         </head>
         <body>
@@ -36,7 +34,7 @@ let template = (
             <div id='root'>
           </div>
 
-            <script src="/bundle.js"></script>
+            <script src="/dist/bundle.js"></script>
             <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
             <script>
                 window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;

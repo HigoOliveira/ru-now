@@ -1,6 +1,6 @@
-import express from 'express';
+const express =  require('express');
 const router = express.Router();
-import LineVote from '../../models/LineVote';
+const LineVote =  require('../../models/LineVote');
 
 router.post('/vote', (req, res) => {
   // receber parametros: rating, userId, date

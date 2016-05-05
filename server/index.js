@@ -16,10 +16,6 @@ const isDev = process.env.NODE_ENV !== 'production';
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
-app.get('/api', (req, res) => {
-  console.log(req);
-  res.send('FUck the api')
-});
 app.use(auth(config, redis));
 const router = require('./router')(app);
 

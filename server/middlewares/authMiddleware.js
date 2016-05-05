@@ -1,11 +1,25 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const passport = require('passport');
 const router = express.Router();
 const FacebookStrategy = require('passport-facebook').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
-const User = '../models/User';
 
-const authMiddlewares = (app, config) => {
+const User = mongoose.model('User', {
+  name: String,
+  email: String,
+  profileUrl: String,
+  avatar: String,
+  provider: String,
+  facebook: {
+    name: String,
+    id: String
+  }
+})
+
+
+
+const authMiddlewares = (app, config, redis) => {
   // Initialize passport
   app.use(passport.initialize());
 

@@ -5,6 +5,7 @@ import Dialog from 'material-ui/Dialog'
 import AppLayout from '../layouts/AppLayout'
 import FlatButton from 'material-ui/FlatButton';
 let appUrl;
+// GET URL INSTEAD OF THIS
 (__DEV__) ? appUrl='http://localhost:3000' : appUrl='https://runow.herokuapp.com'
 
 export default class AppContainer extends Component {

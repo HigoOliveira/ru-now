@@ -9,6 +9,8 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
+let build;
+(process.env.NODE_ENV === 'production') ? build = 'https://s3-sa-east-1.amazonaws.com/runow/bundle.js' : build='dist/bundle.js';
 let template = (
     `<!doctype html>
     <html class="no-js" lang="pt-br">
@@ -34,7 +36,7 @@ let template = (
             <div id='root'>
           </div>
 
-            <script src="/dist/bundle.js"></script>
+            <script src="${build}"></script>
             <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
             <script>
                 window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;

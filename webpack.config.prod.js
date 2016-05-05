@@ -3,11 +3,11 @@ var webpack = require('webpack');
 var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
-  entry: './src/index',
+  entry: './app',
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'public', 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -32,15 +32,15 @@ module.exports = {
       }
     }),
     new webpack.DefinePlugin({
-      __DEV__: JSON.stringify(JSON.parse(process.env.DEV || 'false')),
-      __PRODUCTION__: JSON.stringify(JSON.parse(process.env.PRODUCTION || 'true'))
+      __DEV__: JSON.stringify(JSON.parse(process.env.development || 'false')),
+      __PRODUCTION__: JSON.stringify(JSON.parse(process.env.production || 'true'))
     })
   ],
   module: {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'src')
+      include: path.join(__dirname, 'app')
     }]
   }
 };

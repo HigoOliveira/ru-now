@@ -7,8 +7,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 const rootEl = document.getElementById('root');
+let rootApp
+(__DEV__) ? rootApp = <AppContainer component={App} /> : rootApp = <App />
+
 ReactDOM.render(
-  <AppContainer component={App} style={{margin: 0}} />,
+  rootApp,
   rootEl
 );
 

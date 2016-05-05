@@ -5,6 +5,11 @@
 /*
  * Normalization
  */
+ body, html, #root {
+   margin: 0;
+   padding: 0;
+ }
+
 
 abbr[title] {
 	text-decoration: underline; /* Chrome 48+, Edge 12+, Internet Explorer 11-, Safari 9+ */

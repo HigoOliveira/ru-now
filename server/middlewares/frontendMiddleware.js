@@ -6,11 +6,10 @@ const fs = require('fs');
 const compression = require('compression');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
 let build;
-(process.env.NODE_ENV === 'production') ? build='https://s3-sa-east-1.amazonaws.com/runow/bundle.js' : build='dist/bundle.js';
+(process.env.NODE_ENV === 'production') ? build='https://s3-sa-east-1.amazonaws.com/runow/bundle.js' : build='/bundle.js';
 let template = (
     `<!doctype html>
     <html class="no-js" lang="pt-br">
@@ -60,8 +59,9 @@ const addDevMiddlewares = (app, options) => {
   app.use(webpackHotMiddleware(compiler));
   // const fs = middleware.fileSystem;
   app.get('*', (req, res) => {
-    const file = fs.readFileSync(path.join(options.output.path, '../', 'index.html'));
-    res.send(file.toString());
+    // const file = fs.readFileSync(path.join(options.output.path, '../', 'index.html'));
+    // res.send(file.toString());
+    res.send(template)
   });
 
 };

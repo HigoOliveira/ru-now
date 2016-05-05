@@ -71,7 +71,7 @@ const authMiddlewares = (app, redis) => {
           //found user. Return
           user.access_token = accessToken;
           console.log('-----------------------------');
-          console.log("User is logged: ", user);
+          console.log('User is logged: ', user);
           console.log('-----------------------------');
           return done(err, user);
         }

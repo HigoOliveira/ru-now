@@ -2,7 +2,7 @@
 const express = require('express');
 const logger = require('./logger');
 const redis_env = process.env.REDIS || require('../config').redis;
-const mongo_env = process.env.MONGO || require('../config').redis;
+const mongo_env = process.env.MONGO || require('../config').mongodb;
 
 // Middlewares personalizados
 const frontend = require('./middlewares/frontendMiddleware');

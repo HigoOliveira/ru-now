@@ -9,6 +9,7 @@
     "postinstall": "npm run build",
     "prod": "cross-env NODE_ENV=production node server",
     "web": "node server",
+    "s3": "npm run build && s3-cli put -P ./public/dist/bundle.js s3://runow/bundle.js",
     "lint": "eslint src"
   },
   "repository": {
@@ -54,7 +55,6 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "^1.12.1",
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {

@@ -1,12 +1,11 @@
 import React, { Component, cloneElement } from 'react'
+import 'whatwg-fetch';
 import { browserHistory } from 'react-router'
 import Dialog from 'material-ui/Dialog'
 import AppLayout from '../layouts/AppLayout'
 import FlatButton from 'material-ui/FlatButton';
-
-//import FB from 'fb';
-
-import 'whatwg-fetch';
+let appUrl;
+(__DEV__) ? appUrl='http://localhost:3000' : appUrl='https://runow.herokuapp.com'
 
 export default class AppContainer extends Component {
 	constructor(props) {
@@ -67,7 +66,7 @@ export default class AppContainer extends Component {
 	handleLogin = () => {
 		const { isLogged } = this.state;
 		if(!isLogged) {
-			location.assign('http://localhost:3000/api/auth/facebook');
+			location.assign(`${appUrl}/api/auth/facebook`);
 		} else {
 			this.setState({
 				isLogged: false,
@@ -75,7 +74,7 @@ export default class AppContainer extends Component {
 			})
 			localStorage.removeItem('token');
 			localStorage.removeItem('userData');
-			location.assign('http://localhost:3000/api/auth/logout');
+			location.assign(`${appUrl}/api/auth/logout`);
 		}
 	}
 

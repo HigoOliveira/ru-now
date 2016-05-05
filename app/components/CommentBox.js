@@ -16,8 +16,11 @@ window.fbAsyncInit = () => {
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 
+let href;
+(__DEV__) ? href='runow.herokuapp.com' : 'localhost:3000'
+
 export default ({}) => {
   return (
-    <div className="fb-comments" data-href="localhost:3000" data-numposts="10" data-order-by="reverse_time"></div>
+    <div className="fb-comments" data-href="" data-numposts="10" data-order-by="reverse_time"></div>
   )
 }

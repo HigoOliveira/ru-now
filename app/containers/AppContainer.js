@@ -2,6 +2,7 @@ import React, { Component, cloneElement } from 'react'
 import 'whatwg-fetch';
 import { browserHistory } from 'react-router'
 import Dialog from 'material-ui/Dialog'
+import Snackbar from 'material-ui/Snackbar'
 import AppLayout from '../layouts/AppLayout'
 import FlatButton from 'material-ui/FlatButton';
 
@@ -10,6 +11,8 @@ export default class AppContainer extends Component {
 		super(props)
 		this.state = {
 			loginOpen: false,
+			snackbarOpen: false,
+			snackbarMessage: '',
 			isLogged: false,
 			userData: {},
 			time: Date.now()
@@ -57,6 +60,22 @@ export default class AppContainer extends Component {
     this.setState({loginOpen: true});
   };
 
+  handleTouchTap = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
+
+  setSnackbarMessage = (message) => {
+  	this.setState({ snackbarMessage: message })
+  }
+
   handleClose = () => {
     this.setState({loginOpen: false});
   };
@@ -93,8 +112,8 @@ export default class AppContainer extends Component {
       />,
     ];
 		return	(
-			<AppLayout {...this.state} handleClose={this.handleClose} handleOpen={this.handleOpen} handleLogin={this.handleLogin}>
-				{ cloneElement(this.props.children, Object.assign({},{...this.state}, {handleOpen : this.handleOpen, handleClose : this.handleClose}))}
+			<AppLayout {...this.state} handleClose={this.handleClose} handleOpen={this.handleOpen} handleLogin={this.handleLogin} handleTouchTap={this.handleTouchTap} >
+				{ cloneElement(this.props.children, Object.assign({},{...this.state}, {handleOpen : this.handleOpen, handleClose : this.handleClose, handleRequestClose : this.handleRequestClose, handleTouchTap: this.handleTouchTap, setSnackbarMessage : this.setSnackbarMessage }))}
 				<Dialog
 		          title="Facebook Login"
 		          actions={actions}
@@ -104,6 +123,14 @@ export default class AppContainer extends Component {
 		        >
           			É necessário fazer o login com o Facebook.
         		</Dialog>
+
+        		<Snackbar
+			      open={this.state.open}
+			      message={this.state.snackbarMessage}
+			      autoHideDuration={4000}
+			      onRequestClose={this.handleRequestClose}
+			    />
+
 			</AppLayout>
 		)
 	}

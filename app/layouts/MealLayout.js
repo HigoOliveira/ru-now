@@ -23,7 +23,7 @@ const styles = {
   }
 }
 
-const MealLayout = ({isLogged, userData, time, mealList, handleOpen }) =>  {
+const MealLayout = ({isLogged, userData, time, mealList, handleOpen, handleTouchTap,setSnackbarMessage }) =>  {
 
     return (
       <div>
@@ -32,7 +32,7 @@ const MealLayout = ({isLogged, userData, time, mealList, handleOpen }) =>  {
           <MealList mealList={mealList} />
         </div>
         <div style={styles.actions}>
-          <Meat isLogged={isLogged} handleOpen={handleOpen} />
+          <Meat isLogged={isLogged} handleOpen={handleOpen} handleTouchTap={handleTouchTap} setSnackbarMessage={setSnackbarMessage} />
           <Stars isLogged={isLogged} />
         </div>
         <Tabs />

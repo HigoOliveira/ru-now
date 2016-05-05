@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import ThumbsUp from 'material-ui/svg-icons/action/thumb-up';
 import ThumbsDown from 'material-ui/svg-icons/action/thumb-down';
 
+
 import 'whatwg-fetch';
 
 class Meat extends Component {
@@ -24,62 +25,64 @@ class Meat extends Component {
 		return true;
 	}
 
-	vote(vote) {
+	handleVote = (vote) => {
 		const userData = JSON.parse(localStorage.getItem('userData'));
-		console.log(localStorage.getItem('userData'));
 
 		const url = 'http://localhost:8000/api/meat/vote';
 
-		console.log(JSON.stringify({
-					vote: vote,
-					userId: userData.id
-				}));
+		const { handleTouchTap, setSnackbarMessage } = this.props;
 
-			fetch(url, { 
-				method: 'POST',
-		/*		 headers: {  
-      "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"  
-    },  */
-				headers: {
-				    'Accept': 'application/json',
-				    'Content-Type': 'application/json'
-				},
-				body: /*"vote="+vote+"&userId="+userData.id*/ JSON.stringify({
-					vote: vote,
-					userId: userData.id
-				})
-			}).then((res) => res.json()).then((j) => {
-				if( j.res )
-					alert("Seu voto foi efetuado com sucesso!");
-				else
-					alert("Ocorreu um problema ao votar!");
-			}).catch((err) => {console.log(err)});
+		fetch(url, { 
+			method: 'POST',
+			headers: {
+			    'Accept': 'application/json',
+			    'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				vote: vote,
+				userId: userData.id
+			})
+		}).then((res) => res.json()).then((j) => {
+
+			
+
+			console.log(this.props);
+
+			if( j.error )
+			{
+				console.log(j.msg);
+			}
+			else
+			{
+				handleTouchTap();
+				setSnackbarMessage(j.msg);
+			}
+		}).catch((err) => {console.log(err)});
 	}
 
 	voteYes = () => {
 		if( this.checkUserLogged() )
-			this.vote(true);
+			this.handleVote(true);
 	}
 
 	voteNo = () => {
 		if( this.checkUserLogged() )
-			this.vote(false);
+			this.handleVote(false);
 	}
 
 	render() {
 		const date = new Date()
 		return	(
 			<div>
-				O que você me diz, tem 
+				Tem carne?
 				<IconButton onTouchTap={this.voteYes} >
 					<ThumbsUp />
 				</IconButton>
-				ou
+				
 				<IconButton onTouchTap={this.voteNo} >
 					<ThumbsDown />
 				</IconButton>
-				não tem carne?
-		      	{date.getDate()}
+		      	
 		    </div>
 		)
 	}

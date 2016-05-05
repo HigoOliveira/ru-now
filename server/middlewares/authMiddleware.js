@@ -4,6 +4,9 @@ const passport = require('passport');
 const router = express.Router();
 const FacebookStrategy = require('passport-facebook').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
+const clientId_env = process.env.CLIENTID || require('../../config.js').clientID;
+const clientSecret_env = process.env.CLIENTSECRET || require('../../config.js').clientSecret;
+const facebookCallback_env = process.env.FACEBOOKCALLBACK || require('../../config.js').facebookCallback;
 
 const User = mongoose.model('User', {
   name: String,
@@ -19,7 +22,7 @@ const User = mongoose.model('User', {
 
 
 
-const authMiddlewares = (app, config, redis) => {
+const authMiddlewares = (app, redis) => {
   // Initialize passport
   app.use(passport.initialize());
 
@@ -35,9 +38,9 @@ const authMiddlewares = (app, config, redis) => {
 
   // Setup FacebookStrategy
   passport.use(new FacebookStrategy({
-      clientID: config.clientID,
-      clientSecret: config.clientSecret,
-      callbackURL: config.facebookCallback,
+      clientID: clientId_env,
+      clientSecret: clientSecret_env,
+      callbackURL: facebookCallback_env,
       profileFields: ['id', 'displayName', 'picture', 'email', 'first_name', 'profileUrl']
     },
     (accessToken, refreshToken, profile, done) => {
@@ -78,10 +81,10 @@ const authMiddlewares = (app, config, redis) => {
 
 }
 
-module.exports = (config, redis) => {
+module.exports =(redis) => {
   const isProd = process.env.NODE_ENV === 'production';
 
   const app = express();
-  authMiddlewares(app, config, redis);
+  authMiddlewares(app, redis);
   return app;
 };

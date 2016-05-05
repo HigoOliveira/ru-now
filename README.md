@@ -3,16 +3,26 @@ RUNow
 
 An awesome app for hungry university people.
 
-### Usage
+### Developing Front-End
+Make sure you have [NodeJS](http://nodejs.org) and Nodemon installed with `npm i -g nodemon`.
 
-```
-npm install
-npm start
-open http://localhost:3000
-```
+1. `git clone https://github.com/ufv-js/ru-now.git`
+1. `cd ru-now` and `npm i`
+1. `npm start` to start developing the front-end, with only react-hot-loader
 
-Now edit `src/App.js`.  
+Now edit `app/App.js`.  
 Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
+
+### Developing Back-End
+
+1. Use `npm run api` to develop the back-end, with Nodemon running
+1. `npm run build` will create a build for the Front-End
+1. Finally use `npm run prod` to test how it would run in production
+
+All the API, and authentication files are in the `server` folder.
+
+### Deploy
+The easiest way is to deploy to Heroku.
 
 ### Linting
 

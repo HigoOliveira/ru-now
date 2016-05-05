@@ -1,6 +1,9 @@
 const express = require('express');
 const passport = require('passport');
-const config = require('../../../config.js');
+const facebookFail_env = process.env.FACEBOOKFAIL || require('../../../config.js').facebookFail;
+const facebookSuccess_env = process.env.FACEBOOKSUCCESS || require('../../../config.js').facebookSuccess;
+const logout_env = process.env.LOGOUT || require('../../../config.js').logout;
+
 const router = express.Router();
 const encode = require('urlencode');
 
@@ -8,12 +11,11 @@ const encode = require('urlencode');
 router.get('/facebook', passport.authenticate('facebook', { session: false, scope: ['email', 'public_profile'] }));
 
 router.get('/facebook/callback',
-  passport.authenticate('facebook', { session: false, failureRedirect: config.facebookFail }),
+  passport.authenticate('facebook', { session: false, failureRedirect: facebookFail_env }),
   (req, res) => {
     const user = req.user
     console.log('Facebook callback req.user', req.user);
-    res.redirect(config.facebookSuccess+"?access_token=" + req.user.access_token + "&url_pic="+encode(req.user.avatar)+"&name="+req.user.facebook.name+"&profileUrl="+encode(req.user.profileUrl));
-    // res.redirect(`${config.facebookSuccess}?access_token=${user.access_token}&avatar=${user.avatar}&profileUrl=${user.profileUrl}&name=${user.name}&id={user.facebook.id}`);
+    res.redirect(facebookSuccess_env+"?access_token=" + req.user.access_token + "&url_pic="+encode(req.user.avatar)+"&name="+req.user.facebook.name+"&profileUrl="+encode(req.user.profileUrl));
   }
 );
 
@@ -27,7 +29,7 @@ router.post('/', passport.authenticate('bearer', { session: false }),
 // Logout route
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect(config.logout);
+  res.redirect(logout_env);
 });
 
 module.exports = router;

@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cheerio": "^0.20.0",
     "compression": "^1.6.1",
     "cors": "^2.7.1",
     "cross-env": "^1.0.7",
@@ -77,6 +78,7 @@
     "react-star-rating-component": "^1.0.0",
     "react-tap-event-plugin": "^1.0.0",
     "react-timeago": "^3.0.0",
+    "request": "^2.72.0",
     "urlencode": "^1.1.0",
     "whatwg-fetch": "^1.0.0"
   }

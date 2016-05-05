@@ -23,7 +23,8 @@ const styles = {
   }
 }
 
-const MealLayout = ({isLogged, userData, time, mealList }) =>  {
+const MealLayout = ({isLogged, userData, time, mealList, handleOpen }) =>  {
+
     return (
       <div>
         <div style={styles.meal}>
@@ -31,7 +32,7 @@ const MealLayout = ({isLogged, userData, time, mealList }) =>  {
           <MealList mealList={mealList} />
         </div>
         <div style={styles.actions}>
-          <Meat isLogged={isLogged} />
+          <Meat isLogged={isLogged} handleOpen={handleOpen} />
           <Stars isLogged={isLogged} />
         </div>
         <Tabs />

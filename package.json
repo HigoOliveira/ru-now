@@ -58,7 +58,9 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "compression": "^1.6.1",
+    "cors": "^2.7.1",
     "cross-env": "^1.0.7",
     "express": "^4.13.4",
     "fb": "^1.0.2",

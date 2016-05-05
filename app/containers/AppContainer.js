@@ -94,7 +94,7 @@ export default class AppContainer extends Component {
     ];
 		return	(
 			<AppLayout {...this.state} handleClose={this.handleClose} handleOpen={this.handleOpen} handleLogin={this.handleLogin}>
-				{ cloneElement(this.props.children, {...this.state})}
+				{ cloneElement(this.props.children, Object.assign({},{...this.state}, {handleOpen : this.handleOpen, handleClose : this.handleClose}))}
 				<Dialog
 		          title="Facebook Login"
 		          actions={actions}

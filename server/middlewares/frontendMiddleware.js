@@ -10,7 +10,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
 let build;
-(process.env.NODE_ENV === 'production') ? build = 'https://s3-sa-east-1.amazonaws.com/runow/bundle.js' : build='dist/bundle.js';
+(process.env.NODE_ENV === 'production') ? build='https://s3-sa-east-1.amazonaws.com/runow/bundle.js' : build='dist/bundle.js';
 let template = (
     `<!doctype html>
     <html class="no-js" lang="pt-br">
@@ -79,7 +79,6 @@ const addProdMiddlewares = (app, options) => {
  */
 module.exports = (options) => {
   const isProd = process.env.NODE_ENV === 'production';
-
   const app = express();
 
   if (isProd) {
